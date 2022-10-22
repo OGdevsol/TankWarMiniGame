@@ -15,7 +15,11 @@ class TOONTANKS_API ATank : public ABasePawn
 	GENERATED_BODY()
 public:
 	ATank();
-virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+protected:
+	
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
+    virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 private:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "TankMovementProperties", meta = (AllowPrivateAccess = "true"))
     float tankSpeed;
@@ -27,4 +31,5 @@ private:
 	class UCameraComponent* CameraComp;
 	void Move(float value);
 	void Turn (float value);
+	APlayerController* PlayerControllerRef;
 };
